@@ -55,6 +55,22 @@ export const SearchWrapper=styled.div`
      border-radius:15px;
      text-align:center;
      color:#969696;
+     &.focused{
+       background:rgb(150,150,150);
+       color:#fff;
+     }
+   }
+   .slides-enter{
+     transition:width 0.2s ease-out;
+   }
+   .slides-enter-active{
+     width:240px;
+   }
+   .slides-exit{
+    transition:all 0.2s ease-out;
+   }
+   .slides-exit-active{
+    width:160px;
    }
 `;
 
@@ -63,7 +79,7 @@ export const NavSearch=styled.input.attrs({
 })`
   width:160px;
   height:38px;
-  padding:0 20px;
+  padding:0 30px 0 20px;
   margin-top:9px;
   margin-left:20px;
   box-sizing:border-box;
@@ -72,8 +88,12 @@ export const NavSearch=styled.input.attrs({
   border-radius:19px;
   background:#eee;
   font-size:14px;
+  color:#666;
   &::placeholder{
     color:#999;
+  }
+  &.focused{
+    width:240px;
   }
 `;
 
