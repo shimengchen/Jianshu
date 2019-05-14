@@ -60,18 +60,6 @@ export const SearchWrapper=styled.div`
        color:#fff;
      }
    }
-   .slides-enter{
-     transition:width 0.2s ease-out;
-   }
-   .slides-enter-active{
-     width:240px;
-   }
-   .slides-exit{
-    transition:all 0.2s ease-out;
-   }
-   .slides-exit-active{
-    width:160px;
-   }
 `;
 
 export const NavSearch=styled.input.attrs({
@@ -94,6 +82,18 @@ export const NavSearch=styled.input.attrs({
   }
   &.focused{
     width:240px;
+  }
+  &.slides-enter{
+    transition:width 0.2s ease-out;
+  }
+  &.slides-enter-active{
+    width:240px;
+  }
+  &.slides-exit{
+   transition:all 0.2s ease-out;
+  }
+  &.slides-exit-active{
+   width:160px;
   }
 `;
 
