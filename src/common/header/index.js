@@ -21,7 +21,7 @@ import {
 
 class Header extends Component{
     render(){
-        const {focused,list}=this.props;
+        const {focused,list,handleInputFocus,handleInputBlur}=this.props;
         return (
             <HeaderWrapper>
                 <Logo href='/'/>
@@ -40,8 +40,8 @@ class Header extends Component{
                      >
                       <NavSearch 
                       className={focused?'focused':''} 
-                      onFocus={this.props.handleInputFocus}
-                      onBlur={this.props.handleInputBlur}         
+                      onFocus={handleInputFocus}
+                      onBlur={handleInputBlur}         
                       />
                      </CSSTransition>
                     <span className={focused?'iconfont focused':'iconfont'}>&#xe6cf;</span>
