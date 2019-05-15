@@ -8,6 +8,8 @@ const defaultState=fromJS({
 
 export default (state=defaultState,action)=>{
     if(action.type===actionTypes.SEARCH_FOCUS){
+        //immutable对象的set方法，会结合之前immutable对象的值
+        //返回新的immutable对象
         return state.set('focused',true);
     }
     if(action.type===actionTypes.SEARCH_BLUR){
