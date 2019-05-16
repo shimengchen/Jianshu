@@ -119,7 +119,12 @@ export const SearchInfoSwitch=styled.span`
    float:right;
    font-size:13px;
    .spin{
+     margin-right:2px;
+     display:block;
+     float:left;
      font-size:12px;
+     transition:all 0.2s linear;
+     transform-origin:center center;
    }
 `;
 
