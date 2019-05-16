@@ -21,7 +21,19 @@ import {
 
 class Header extends Component{
     render(){
-        const {focused,list,handleInputFocus,handleInputBlur}=this.props;
+        const {focused,mouseIn,list,page,totalPage,handleInputFocus,handleInputBlur,handleMouseEnter,handleMouseLeave,handleSwitchPage}=this.props;
+        //将list由immutable对象类型转换为js对象类型
+        const newList=list.toJS(list);
+        const pageList=[];
+
+        if(newList.length){
+         for(let i=page*10;i<(page+1)*10;i++){
+            if(!newList[i]) break;
+            pageList.push(
+                <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+            );
+         }
+        }
         return (
             <HeaderWrapper>
                 <Logo href='/'/>
@@ -44,17 +56,15 @@ class Header extends Component{
                       onBlur={handleInputBlur}         
                       />
                      </CSSTransition>
-                    <span className={focused?'iconfont focused':'iconfont'}>&#xe6cf;</span>
-                    {focused&&<SearchInfo>
+                    <span className={focused?'iconfont focused zoom':'iconfont zoom'}>&#xe6cf;</span>
+                    {(focused||mouseIn)&&<SearchInfo 
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}>
                         <SearchInfoTitle>
                             热门搜索
-                            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                            <SearchInfoSwitch onClick={()=>{handleSwitchPage(page,totalPage)}}><span className="iconfont spin">&#xe606;</span> 换一批</SearchInfoSwitch>
                             <SearchInfoList>
-                                {
-                                    list.map((item)=>{
-                                        return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                                    })
-                                }
+                                {pageList}
                             </SearchInfoList>
                         </SearchInfoTitle>
                     </SearchInfo>}
@@ -72,7 +82,10 @@ class Header extends Component{
 const mapStateToProps=(state)=>{
     return {
         focused:state.get('header').get('focused'),
-        list:state.getIn(['header','list'])
+        mouseIn:state.getIn(['header','mouseIn']),
+        list:state.getIn(['header','list']),
+        page:state.getIn(['header','page']),
+        totalPage:state.getIn(['header','totalPage'])
     }
 }
 const mapDispatchToProps=(dispatch)=>{
@@ -83,6 +96,16 @@ const mapDispatchToProps=(dispatch)=>{
        },
        handleInputBlur(){
            dispatch(actionCreators.searchBlur());
+       },
+       handleMouseEnter(){
+           dispatch(actionCreators.mouseEnter());
+       },
+       handleMouseLeave(){
+           dispatch(actionCreators.mouseLeave());
+       },
+       handleSwitchPage(page,totalPage){
+           const data=(page+1)%totalPage;
+           dispatch(actionCreators.switchPage(data));
        }
     }
 }
