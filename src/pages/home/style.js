@@ -27,6 +27,7 @@ export const TopicWrapper=styled.div`
    padding:20px 0 10px 0;
    overflow:hidden;
    margin-left:-18px;
+   border-bottom:1px solid #dcdcdc;
 `;
 
 export const TopicItem=styled.div`
@@ -48,5 +49,37 @@ export const TopicItem=styled.div`
       height:32px;
       margin-right:5px;
    }
+`;
+
+export const ListItem=styled.div`
+    padding:20px 0;
+    border-bottom:1px solid #dcdcdc;
+    overflow:hidden
+    .pic{
+       display:block;
+       float:right;
+       width:125px;
+       height:100px;
+       border-radius:10px;
+    }
+`;
+
+export const ListInfo=styled.div`
+    width:500px;
+    box-sizing:border-box;
+    padding-right:10px
+    float:left;
+    .title{
+       line-height:27px;
+       font-size:18px;
+       font-weight:bold;
+       color:#333;
+       margin-bottom:10px;
+    }
+    .desc{
+       line-height:18px;
+       font-size:13px;
+       color:#999;
+    }
 `;
 

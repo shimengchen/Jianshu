@@ -1,0 +1,1 @@
+export const LOAD_ARTICLE='header/LOAD_ARTICLE';
