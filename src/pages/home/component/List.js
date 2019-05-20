@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import { actionCreators } from '../store/index';
 import {
     ListItem,
-    ListInfo
+    ListInfo,
+    LoadMore
 } from '../style';
 
 class List extends Component{
@@ -12,12 +13,12 @@ class List extends Component{
     }
 
     render(){
-        const {articleList}=this.props;
+        const {articleList,getMoreList,page}=this.props;
         return (
             <div>
-                {articleList.map((item)=>{
+                {articleList.map((item,index)=>{
                     return (
-                        <ListItem key={item.get('id')}>
+                        <ListItem key={index}>
                          <img className='pic' src={item.get('imgUrl')} alt='item'/>
                          <ListInfo>
                             <h3 className='title'>{item.get('title')}</h3>
@@ -26,6 +27,7 @@ class List extends Component{
                         </ListItem>
                     )
                 })}
+                <LoadMore onClick={()=>getMoreList(page)}>更多文字</LoadMore>
             </div>
         )
     }
@@ -34,7 +36,8 @@ class List extends Component{
 const mapStateToProps=(state)=>{
     return {
         topicList:state.getIn(['home','topicList']),
-        articleList:state.getIn(['home','articleList'])
+        articleList:state.getIn(['home','articleList']),
+        page:state.getIn(['home','page'])
     }
 }
 
@@ -42,6 +45,9 @@ const mapDispatchToProps=(dispatch)=>{
     return {
         handleLoadArticleList(){
             dispatch(actionCreators.getArticleList());
+        },
+        getMoreList(page){
+            dispatch(actionCreators.getMoreList(page));
         }
     }
 }
