@@ -19,7 +19,7 @@ export const HomeLeft=styled.div`
 
 export const HomeRight=styled.div`
    float:right;
-   width:240px;
+   width:280px;
    padding-top:30px;
 `;
 
@@ -82,4 +82,16 @@ export const ListInfo=styled.div`
        color:#999;
     }
 `;
+
+export const RecommendWrapper=styled.div`
+    width:380px;
+`;
+
+export const RecommendItem=styled.div`
+    width:280px;
+    height:50px;
+    background:url(${(props)=>props.imgUrl});
+    background-size:contain;
+`;
+
 
