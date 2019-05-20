@@ -23,7 +23,8 @@ const defaultState=fromJS({
         'http://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png',
         'http://cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png'
     ],
-    page:1
+    page:1,
+    showBack:false
 });
 
 export default (state=defaultState,action)=>{
@@ -34,7 +35,11 @@ export default (state=defaultState,action)=>{
             return state.merge({
                 'articleList':state.get('articleList').concat(action.data),
                 'page':action.nextPage
-            })
+            });
+        case actionTypes.SHOW_BACK_TOP:
+            return state.set('showBack',true);
+        case actionTypes.HIDE_BACK_TOP:
+            return state.set('showBack',false);
         default:
             return state;
     }
